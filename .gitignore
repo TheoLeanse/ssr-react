@@ -2,7 +2,7 @@
 backup/
 bower_components/
 built/
-node_modules/
+/node_modules/
 public/
 src/scss/spritesmith-generated/
 .DS_Store

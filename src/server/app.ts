@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import exphbs from 'express-handlebars';
 import indexRoute from './routes/index-route';
-import log from '../lib/logger';
+import log from '../shared/lib/logger';
 
 export const handlebarsEngine = exphbs({
 	defaultLayout: 'main-express',

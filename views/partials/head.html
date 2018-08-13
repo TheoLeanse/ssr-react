@@ -1,0 +1,59 @@
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	{{{headTitleHtml}}}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	{{#each assets.css}}
+		<link rel="stylesheet" href="{{this}}">
+	{{/each}}
+
+	<link rel="icon" type="image/png" href="https://www.scout.asia/static/images/icons/favicon.png">
+
+	<script>
+		// Avoid `console` errors in browsers that lack a console.
+		// TODO: do we support browsers without console?
+		(function () {
+			var method;
+			var noop = function () { };
+			var methods = [
+				'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+				'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+				'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+				'timeStamp', 'trace', 'warn'
+			];
+			var length = methods.length;
+			var console = (window.console = window.console || {});
+
+			while (length--) {
+				method = methods[length];
+
+				// Only stub undefined methods.
+				if (!console[method]) {
+					console[method] = noop;
+				}
+			}
+		}());
+	</script>
+
+	<script src="{{assets.modernizr}}"></script>
+
+	<!--Mouseflow Behaviour tracking script-->
+	<script type="text/javascript">
+		window._mfq = window._mfq || [];
+		(function () {
+			var mf = document.createElement("script");
+			mf.type = "text/javascript"; mf.async = true;
+			mf.src = "//cdn.mouseflow.com/projects/e20ec9b2-a65b-40b6-8a71-03aaa20858a5.js";
+			document.getElementsByTagName("head")[0].appendChild(mf);
+		})();
+	</script>
+
+	<script src="//polyfill.io/v2/polyfill.js?features=Intl.~locale.en-GB,Element.prototype.classList,requestAnimationFrame,Event,fetch,Element.prototype.placeholder"></script>
+	<script>
+		window.__CSS_CHUNKS__ = {{{json assets.cssChunkMap}}};
+	</script>
+
+	{{#each assets.js}}
+		<script async defer src={{.}}></script>
+	{{/each}}
+</head>

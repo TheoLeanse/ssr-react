@@ -7,7 +7,7 @@ const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const gitRevisionPlugin = new GitRevisionPlugin({
 	branch: true
 });
-const SpritesmithPlugin = require('webpack-spritesmith');
+
 const nodeExternals = require('webpack-node-externals');
 const _ = require('lodash');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
@@ -126,7 +126,7 @@ _.merge(serverConfig, {
 		mainFiles: ['index', 'module', 'main']
 	},
 	entry: {
-		express: ['babel-polyfill', 'isomorphic-fetch', './src/express/app.ts']
+		express: ['babel-polyfill', 'isomorphic-fetch', './src/server/app.ts']
 	},
 	output: {
 		path: path.join(__dirname, '/built'),
@@ -189,7 +189,7 @@ _.merge(clientConfig, {
 			'react-router-redux',
 			'immutable'
 		],
-		main: ['core-js', 'aws-sdk/global', './src/react/client-mount.tsx']
+		main: ['core-js', 'aws-sdk/global', './src/client/client-mount.tsx']
 	},
 	output: {
 		path: path.join(__dirname, '/public'),
@@ -216,25 +216,25 @@ _.merge(clientConfig, {
 			/* Empty output directories before new bundles generated */
 			'public/*.*'
 		]),
-		new CopyWebpackPlugin([
-			{
-				from: path.resolve(
-					__dirname,
-					'src/lib/js-lib/modernizr-custom.js'
-				),
-				to: DEV_MODE
-					? 'modernizr.js'
-					: 'modernizr.[md5:hash:hex:20].js',
-				toType: 'template'
-			},
-			{
-				from: path.resolve(__dirname, 'src/css/express-errors.css'),
-				to: DEV_MODE
-					? 'express-errors.css'
-					: 'express-errors.[md5:hash:hex:20].css',
-				toType: 'template'
-			}
-		]),
+		// new CopyWebpackPlugin([
+		// 	{
+		// 		from: path.resolve(
+		// 			__dirname,
+		// 			'src/lib/js-lib/modernizr-custom.js'
+		// 		),
+		// 		to: DEV_MODE
+		// 			? 'modernizr.js'
+		// 			: 'modernizr.[md5:hash:hex:20].js',
+		// 		toType: 'template'
+		// 	},
+		// 	{
+		// 		from: path.resolve(__dirname, 'src/css/express-errors.css'),
+		// 		to: DEV_MODE
+		// 			? 'express-errors.css'
+		// 			: 'express-errors.[md5:hash:hex:20].css',
+		// 		toType: 'template'
+		// 	}
+		// ]),
 		new ManifestPlugin({
 			// Generate manifest file with mapping from file name to hashed generated file location
 			map: file => {
@@ -249,40 +249,6 @@ _.merge(clientConfig, {
 		new cssExtractPlugin({
 			filename: DEV_MODE ? '[name].css' : '[name].[contenthash].css',
 			chunkFilename: DEV_MODE ? '[name].css' : '[name].[contenthash].css'
-		}),
-		new SpritesmithPlugin({
-			src: {
-				cwd: path.resolve(__dirname, 'src/assets/img'),
-				glob: '**/*.png'
-			},
-			target: {
-				image: path.resolve(__dirname, 'public/sprite.png'),
-				css: [
-					[
-						path.resolve(
-							__dirname,
-							'src/scss/spritesmith-generated/sprite.scss'
-						),
-						{
-							format: 'template'
-						}
-					]
-				]
-			},
-			apiOptions: {
-				cssImageRef: '~sprite.png'
-			},
-			retina: '@2x',
-			customTemplates: {
-				template: path.resolve(
-					__dirname,
-					'src/scss/spritesmith-template.handlebars.scss'
-				),
-				template_retina: path.resolve(
-					__dirname,
-					'src/scss/spritesmith-template.handlebars.scss'
-				)
-			}
 		})
 	]),
 	node: {
