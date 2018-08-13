@@ -1,0 +1,55 @@
+{
+	"ignore": ["**/*.d.ts"],
+	"env": {
+		"development": {
+			"presets": ["es2015", "stage-0", "react"],
+			"plugins": [
+				"transform-proto-to-assign",
+				"transform-class-properties",
+				[
+					"transform-es2015-classes",
+					{
+						"loose": true
+					}
+				],
+				"transform-runtime",
+				"react-loadable/babel",
+				"dual-import"
+			]
+		},
+		"production": {
+			"presets": ["es2015", "stage-0", "react"],
+			"plugins": [
+				"transform-proto-to-assign",
+				"transform-class-properties",
+				[
+					"transform-es2015-classes",
+					{
+						"loose": true
+					}
+				],
+				"transform-runtime",
+				"react-loadable/babel",
+				"dual-import"
+			]
+		},
+		"test": {
+			"presets": [
+				[
+					"env",
+					{
+						"modules": "commonjs",
+						"useBuiltIns": "usage",
+						"debug": false
+					}
+				],
+				"stage-0",
+				"react"
+			],
+			"plugins": [
+				"transform-es2015-modules-commonjs",
+				"dynamic-import-node"
+			]
+		}
+	}
+}
