@@ -1,0 +1,38 @@
+{
+	"defaultSeverity": "error",
+	"extends": ["tslint:recommended"],
+	"jsRules": {},
+	"rules": {
+		"quotemark": [false],
+		"indent": [true, "tabs", 4],
+		"variable-name": [
+			true,
+			"ban-keywords",
+			"check-format",
+			"allow-leading-underscore",
+			"allow-pascal-case"
+		],
+		"curly": [false],
+		"object-literal-sort-keys": false,
+		"arrow-parens": [true, "ban-single-arg-parens"],
+		"trailing-comma": [false],
+		"ordered-imports": [false],
+		"member-access": false,
+		"member-ordering": false,
+		"semicolon": [false, "always", "ignore-interfaces"],
+		"array-type": false,
+		"max-classes-per-file": false,
+		"max-line-length": false,
+		"no-var-requires": false,
+		"no-console": [true, "log", "error"],
+		"no-shadowed-variable": false,
+		"jsdoc-format": false,
+		"object-literal-key-quotes": [false]
+	},
+	"rulesDirectory": [],
+	"globals": {
+		"WEBPACK_CONFIG_IS_NODE": false,
+		"CONFIG_IS_TEST": false,
+		"Modernizr": true
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"compilerOptions": {
+		"target": "ES6",
+		"module": "esnext",
+		"jsx": "react",
+		"lib": ["DOM", "ES5", "ScriptHost", "ES2015", "ES2016", "ES2017"],
+		"moduleResolution": "node",
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"experimentalDecorators": true,
+		"sourceMap": true,
+		"typeRoots": ["node_modules/@types"],
+		"baseUrl": ".",
+		"paths": {
+			"react": ["node_modules/@types/react"],
+			"@react/*": ["src/react/*"],
+			"@redux/*": ["src/redux/*"],
+			"@ui/*": ["src/react/components/ui/*"],
+			"@actions/*": ["src/redux/actions/*"],
+			"@domain/*": ["src/redux/domain/*"]
+		}
+	},
+	"exclude": [
+		"./node_modules",
+		"./node_modules/searchkit/node_modules/@types/react/index.d.ts",
+		"**/*.spec.ts"
+	],
+	"include": ["src/**/*", "node_modules/di2-types/index.ts"],
+	"compileOnSave": false
+}

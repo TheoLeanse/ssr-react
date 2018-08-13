@@ -1,0 +1,17 @@
+*.log
+backup/
+bower_components/
+built/
+node_modules/
+public/
+src/scss/spritesmith-generated/
+.DS_Store
+*.env*
+.idea
+.tmp/
+npm-debug.log
+fastly-ip-addresses.json
+__test__/__webdriver__/screenshots/screen
+__test__/__webdriver__/screenshots/diff
+__test__/__wiremock__/wiremock-standalone-2.13.0.jar
+.vagrant
